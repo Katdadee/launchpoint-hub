@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import NextMeeting from '../components/NextMeeting.astro';
+import Calendar from '../components/Calendar.astro';
+import Documents from '../components/Documents.astro';
+import NotesPreview from '../components/NotesPreview.astro';
+import Project from '../components/Project.astro';
+import { loadEvents } from '../lib/events';
+const events = await loadEvents();
+---
+<Base current="home">
+  <NextMeeting events={events} />
+  <Calendar events={events} />
+  <Documents />
+  <NotesPreview />
+  <Project />
+</Base>

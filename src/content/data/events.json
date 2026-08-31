@@ -1,0 +1,43 @@
+[
+  {
+    "id": "2026-09-10-kickoff",
+    "title": "Kickoff Meeting (sample — edit me)",
+    "date": "2026-09-10",
+    "start": "18:00",
+    "end": "19:30",
+    "location": "Zoom",
+    "description": "Introductions, agree on roles, meeting cadence, and how we'll use the hub. Replace this sample event with the real schedule in src/content/data/events.json.",
+    "type": "meeting"
+  },
+  {
+    "id": "2026-09-24-resource-map",
+    "title": "Working Session: Resource Mapping (sample)",
+    "date": "2026-09-24",
+    "start": "18:00",
+    "end": "19:30",
+    "location": "Zoom",
+    "description": "Begin mapping existing youth-serving resources in Montgomery County.",
+    "type": "meeting"
+  },
+  {
+    "id": "2026-10-08-stakeholders",
+    "title": "Working Session: Stakeholder List (sample)",
+    "date": "2026-10-08",
+    "start": "18:00",
+    "end": "19:30",
+    "location": "Zoom",
+    "description": "Finalize the list of agencies and people to interview.",
+    "type": "meeting"
+  },
+  {
+    "id": "2027-05-20-presentation",
+    "title": "Final Presentation to Leadership Clarksville (sample date)",
+    "date": "2027-05-20",
+    "start": "09:00",
+    "end": "12:00",
+    "location": "TBD — in person",
+    "inPerson": true,
+    "description": "Present the Launch Point implementation plan.",
+    "type": "lc"
+  }
+]

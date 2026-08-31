@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import { site } from '../config';
+interface Props { title?: string; description?: string; current?: string }
+const { title, description = `${site.projectName}: ${site.projectTagline} — ${site.programName} study group hub.`, current = '' } = Astro.props;
+const fullTitle = title ? `${title} · ${site.projectName} Hub` : `${site.projectName} Hub · ${site.programName}`;
+const nav = [
+  { href: '/#next', label: 'Join Meeting', key: 'home' },
+  { href: '/#calendar', label: 'Calendar', key: 'calendar' },
+  { href: '/#documents', label: 'Documents', key: 'documents' },
+  { href: '/notes', label: 'Meeting Notes', key: 'notes' },
+  { href: '/#project', label: 'The Project', key: 'project' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="text/calendar" href="/calendar.ics" title={`${site.projectName} meetings`} />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap">
+        <a class="brand" href="/">
+          <span class="mark" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 64 64"><path d="M14 14v30h14" fill="none" stroke="#6fae5c" stroke-width="9" stroke-linecap="square"/><path d="M50 26a12 12 0 1 0 0 16" fill="none" stroke="#1e3a6e" stroke-width="9" stroke-linecap="round"/></svg>
+          </span>
+          <div>
+            <strong>{site.projectName} Hub</strong>
+            <span>{site.programName} · {site.cohort}</span>
+          </div>
+        </a>
+        <nav class="main" aria-label="Main">
+          {nav.map((n) => <a href={n.href} aria-current={n.key === current ? 'page' : undefined}>{n.label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <div class="greenbar"></div>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <div class="wrap">
+        <strong>{site.projectName}: {site.projectTagline}</strong> — a {site.programName} {site.cohort} study group project.<br />
+        Something missing or wrong on this page? Contact {site.hubOwner.name} ({site.hubOwner.role}).
+      </div>
+    </footer>
+  </body>
+</html>

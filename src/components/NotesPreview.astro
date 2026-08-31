@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import ActionItems from './ActionItems.astro';
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const recent = notes.slice(0, 4);
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+---
+<section id="notes" class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Meeting Notes</h2>
+        <p class="muted">What we discussed, what we decided, who owns what next.</p>
+      </div>
+      <a class="btn btn-outline no-print" href="/notes">All notes →</a>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Recent meetings</h3>
+        <ul class="plain">
+          {recent.map((n) => (
+            <li>
+              <a href={`/notes/${n.id}`} class="note-link">
+                <strong>{n.data.title}</strong>
+                <span class="muted small">{fmt(n.data.date)}{n.data.attendees.length ? ` · ${n.data.attendees.length} attending` : ''}</span>
+                {n.data.summary && <span class="small">{n.data.summary}</span>}
+              </a>
+            </li>
+          ))}
+          {recent.length === 0 && <li class="muted">No notes published yet.</li>}
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Open action items</h3>
+        <ActionItems notes={notes} />
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .note-link { display: flex; flex-direction: column; gap: .15rem; text-decoration: none; color: inherit; }
+  .note-link strong { color: var(--navy); }
+  .note-link:hover strong { text-decoration: underline; }
+</style>

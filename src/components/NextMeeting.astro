@@ -1,0 +1,86 @@
+---
+/**
+ * The "easy button". Renders every upcoming event's data; a tiny script picks the
+ * next one (based on the visitor's clock) and shows one big Join button.
+ */
+import type { HubEvent } from '../lib/events';
+import { longDate, timeRange, googleCalLink } from '../lib/events';
+import { site } from '../config';
+interface Props { events: HubEvent[] }
+const { events } = Astro.props;
+const first = events[0];
+const payload = events.map((e) => ({
+  id: e.id, title: e.title, date: e.date, endISO: e.endISO, when: `${longDate(e.date)} · ${timeRange(e)}`,
+  location: e.location ?? '', joinUrl: e.joinUrl, inPerson: e.inPerson, description: e.description ?? '', gcal: googleCalLink(e),
+}));
+const zoomMissing = !site.zoomUrl;
+---
+<section id="next" class="block">
+  <div class="wrap">
+    <div class="card next-card">
+      <div class="next-info">
+        <span class="pill pill-green">Next meeting</span>
+        <h1 id="nm-title">{first ? first.title : 'No meetings scheduled yet'}</h1>
+        <p class="when" id="nm-when">{first ? `${longDate(first.date)} · ${timeRange(first)}` : ''}</p>
+        <p class="muted" id="nm-loc">{first?.location}</p>
+        <p class="muted small" id="nm-desc">{first?.description}</p>
+      </div>
+      <div class="next-actions">
+        <a id="nm-join" class="btn btn-primary btn-lg" href={first?.joinUrl || '#'} target="_blank" rel="noopener" aria-disabled={first?.joinUrl ? undefined : 'true'}>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg>
+          Join Zoom Meeting
+        </a>
+        <div class="btn-row small-row">
+          <a id="nm-gcal" class="btn btn-outline" href={first ? googleCalLink(first) : '#'} target="_blank" rel="noopener">＋ Add to Google Calendar</a>
+          <a class="btn btn-outline" href="/#calendar">See full schedule</a>
+        </div>
+        <p id="nm-hint" class="muted small hint">
+          {zoomMissing ? 'Zoom link not set yet — the hub admin will add it.' : 'Meeting runs on Zoom. Click a few minutes early; no account needed.'}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/json" id="nm-data" set:html={JSON.stringify(payload)}></script>
+<script>
+  // Pick the next meeting relative to the visitor's clock (events are Central Time; the
+  // ~1h window here is forgiving enough that the current meeting stays "next" until it ends).
+  const data = JSON.parse(document.getElementById('nm-data')!.textContent || '[]');
+  const now = new Date();
+  const next = data.find((e: any) => new Date(e.endISO) >= now) ?? null;
+  const $ = (id: string) => document.getElementById(id)!;
+  if (next) {
+    $('nm-title').textContent = next.title;
+    $('nm-when').textContent = next.when;
+    $('nm-loc').textContent = next.location;
+    $('nm-desc').textContent = next.description;
+    const join = $('nm-join') as HTMLAnchorElement;
+    if (next.joinUrl) { join.href = next.joinUrl; join.removeAttribute('aria-disabled'); }
+    else { join.href = '#'; join.setAttribute('aria-disabled', 'true'); }
+    if (next.inPerson) { join.textContent = 'In-person meeting'; join.setAttribute('aria-disabled', 'true'); $('nm-hint').textContent = `Meet at: ${next.location}`; }
+    ($('nm-gcal') as HTMLAnchorElement).href = next.gcal;
+    // Live status: today / happening now
+    const today = new Date().toISOString().slice(0, 10);
+    const local = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    if (next.date === local || next.date === today) {
+      const pill = document.querySelector('#next .pill')!;
+      pill.textContent = 'Today'; pill.classList.replace('pill-green', 'pill-amber');
+    }
+  } else if (data.length) {
+    $('nm-title').textContent = 'No upcoming meetings on the calendar';
+    $('nm-when').textContent = ''; $('nm-loc').textContent = ''; $('nm-desc').textContent = 'Check back soon — the schedule will be updated here.';
+    $('nm-join').setAttribute('aria-disabled', 'true');
+  }
+</script>
+
+<style>
+  .next-card { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; padding: 2rem; border-top: 6px solid var(--green); }
+  .next-info h1 { margin-top: .5rem; }
+  .when { font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+  .next-actions { display: flex; flex-direction: column; gap: .9rem; justify-content: center; }
+  .next-actions .btn-lg { width: 100%; }
+  .small-row .btn { flex: 1; font-size: .95rem; padding: .7rem .9rem; }
+  .hint { margin: 0; text-align: center; }
+  @media (max-width: 760px) { .next-card { grid-template-columns: 1fr; padding: 1.4rem; } }
+</style>

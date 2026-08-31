@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import { site } from '../config';
+const docs = (await getCollection('documents')).map((d) => d.data);
+const featured = docs.filter((d) => d.featured);
+const categories = [...new Set(docs.map((d) => d.category))];
+const icon: Record<string, string> = { pdf: '📄', doc: '📝', sheet: '📊', slides: '📽️', link: '🔗', folder: '📁', image: '🖼️', video: '🎬' };
+const fmt = (d?: Date) => d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
+/** Turn a Google Drive/Docs view link into a direct-download link where possible. */
+function downloadUrl(url: string, type: string): string | null {
+  const m = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (m) return `https://drive.google.com/uc?export=download&id=${m[1]}`;
+  const doc = url.match(/docs\.google\.com\/document\/d\/([^/]+)/);
+  if (doc) return `https://docs.google.com/document/d/${doc[1]}/export?format=pdf`;
+  const sh = url.match(/docs\.google\.com\/spreadsheets\/d\/([^/]+)/);
+  if (sh) return `https://docs.google.com/spreadsheets/d/${sh[1]}/export?format=xlsx`;
+  const sl = url.match(/docs\.google\.com\/presentation\/d\/([^/]+)/);
+  if (sl) return `https://docs.google.com/presentation/d/${sl[1]}/export/pdf`;
+  if (type === 'pdf' && !url.includes('google.com')) return url;
+  return null;
+}
+const driveUrl = site.driveFolderId ? `https://drive.google.com/drive/folders/${site.driveFolderId}` : '';
+---
+<section id="documents" class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Documents & Collateral</h2>
+        <p class="muted">Everything the group creates. Click to open; use <strong>Download</strong> to save a copy.</p>
+      </div>
+      {driveUrl && <a class="btn btn-navy no-print" href={driveUrl} target="_blank" rel="noopener">📁 Open shared Drive folder</a>}
+    </div>
+
+    {!site.driveFolderId && (
+      <div class="card setup" style="margin-bottom:1.1rem">
+        <strong>Setup step for the hub admin:</strong> create the group's shared Google Drive folder, share it as <em>Anyone with the link → Viewer</em>,
+        and paste its ID into <code>driveFolderId</code> in <code>src/config.ts</code>. The folder will then appear here, live, and every file dropped into it is instantly available to the group.
+      </div>
+    )}
+
+    {featured.length > 0 && (
+      <div class="grid cols-3" style="margin-bottom:1.25rem">
+        {featured.map((d) => {
+          const dl = downloadUrl(d.url, d.type);
+          return (
+            <div class="card doc-card">
+              <div class="doc-icon" aria-hidden="true">{icon[d.type]}</div>
+              <h3><a href={d.url} target="_blank" rel="noopener">{d.title}</a></h3>
+              {d.description && <p class="small muted">{d.description}</p>}
+              <div class="btn-row">
+                <a class="btn btn-outline sm" href={d.url} target="_blank" rel="noopener">Open</a>
+                {dl && <a class="btn btn-navy sm" href={dl} download>⬇ Download</a>}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )}
+
+    <div class="grid cols-2">
+      {site.driveFolderId && (
+        <div class="card drive-embed">
+          <h3>Shared Drive folder</h3>
+          <iframe src={`https://drive.google.com/embeddedfolderview?id=${site.driveFolderId}#list`} title="Group shared folder" loading="lazy"></iframe>
+        </div>
+      )}
+      <div class="card">
+        <h3>Document index</h3>
+        {categories.map((cat) => (
+          <>
+            <h4 class="cat">{cat}</h4>
+            <ul class="plain">
+              {docs.filter((d) => d.category === cat).map((d) => {
+                const dl = downloadUrl(d.url, d.type);
+                return (
+                  <li class="doc-row">
+                    <span aria-hidden="true">{icon[d.type]}</span>
+                    <span class="doc-main">
+                      <a href={d.url} target="_blank" rel="noopener"><strong>{d.title}</strong></a>
+                      <span class="muted small">{[d.owner, fmt(d.updated)].filter(Boolean).join(' · ')}</span>
+                    </span>
+                    {dl && <a class="dl" href={dl} download title="Download">⬇</a>}
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        ))}
+        {docs.length === 0 && <p class="muted">No documents yet.</p>}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .doc-card { display: flex; flex-direction: column; gap: .4rem; }
+  .doc-icon { font-size: 1.8rem; }
+  .doc-card h3 a { text-decoration: none; }
+  .doc-card h3 a:hover { text-decoration: underline; }
+  .btn.sm { font-size: .9rem; padding: .55rem .9rem; }
+  .drive-embed iframe { width: 100%; height: 420px; border: 1px solid var(--line); border-radius: 8px; }
+  .cat { margin: 1rem 0 .3rem; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .doc-row { display: flex; gap: .7rem; align-items: center; }
+  .doc-main { flex: 1; display: flex; flex-direction: column; }
+  .doc-main a { text-decoration: none; }
+  .doc-main a:hover { text-decoration: underline; }
+  .dl { text-decoration: none; font-size: 1.2rem; padding: .3rem .5rem; border-radius: 8px; border: 1px solid var(--line); }
+  .dl:hover { background: #eef2f9; }
+</style>

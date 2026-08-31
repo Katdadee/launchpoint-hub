@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { notes: CollectionEntry<'notes'>[]; showDone?: boolean }
+const { notes, showDone = false } = Astro.props;
+const items = notes
+  .flatMap((n) => n.data.actionItems.map((a) => ({ ...a, noteId: n.id, noteTitle: n.data.title, noteDate: n.data.date })))
+  .filter((a) => showDone || !a.done)
+  .sort((a, b) => (a.due?.getTime() ?? Infinity) - (b.due?.getTime() ?? Infinity));
+const today = new Date(); today.setHours(0, 0, 0, 0);
+const fmt = (d?: Date) => d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }) : 'No date';
+const state = (a: typeof items[number]) => a.done ? 'done' : a.due && a.due < today ? 'late' : a.due && (a.due.getTime() - today.getTime()) < 7 * 864e5 ? 'soon' : 'open';
+---
+{items.length === 0 ? <p class="muted">Nothing open — nice.</p> : (
+  <ul class="plain ai">
+    {items.map((a) => { const s = state(a); return (
+      <li class={s}>
+        <span class={`pill ${s === 'late' ? 'pill-red' : s === 'soon' ? 'pill-amber' : s === 'done' ? 'pill-green' : 'pill-gray'}`}>{s === 'late' ? 'Overdue' : s === 'soon' ? 'Due soon' : s === 'done' ? 'Done' : fmt(a.due)}</span>
+        <span class="task">
+          <span class={a.done ? 'strike' : ''}>{a.task}</span>
+          <span class="muted small">{a.owner}{a.due && s !== 'open' ? ` · due ${fmt(a.due)}` : ''} · from <a href={`/notes/${a.noteId}`}>{a.noteTitle}</a></span>
+        </span>
+      </li>
+    ); })}
+  </ul>
+)}
+<style>
+  .ai li { display: flex; gap: .8rem; align-items: flex-start; }
+  .ai .pill { flex: none; margin-top: .2rem; min-width: 5.2rem; text-align: center; }
+  .task { display: flex; flex-direction: column; }
+  .strike { text-decoration: line-through; color: var(--muted); }
+</style>

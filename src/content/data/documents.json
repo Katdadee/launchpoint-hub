@@ -1,0 +1,21 @@
+[
+  {
+    "id": "lc-project-brief",
+    "title": "LC Project Brief — Launch Point (pages 16–17)",
+    "description": "The original study-group assignment from the Leadership Clarksville program book.",
+    "category": "Program Materials",
+    "url": "https://drive.google.com/",
+    "type": "pdf",
+    "updated": "2026-08-31",
+    "featured": true
+  },
+  {
+    "id": "shared-drive",
+    "title": "Group Shared Drive (all files)",
+    "description": "Everything we create lives here. Anyone with the link can view and download.",
+    "category": "Program Materials",
+    "url": "https://drive.google.com/",
+    "type": "folder",
+    "featured": true
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "name": "launchpoint-hub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Launch Point Hub — Leadership Clarksville study group dashboard (Youth Transition to Independence).",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "note": "node scripts/new-note.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.2.8"
+  }
+}

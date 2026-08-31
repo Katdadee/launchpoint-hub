@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ActionItems from '../../components/ActionItems.astro';
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const byMonth = new Map<string, typeof notes>();
+for (const n of notes) {
+  const k = n.data.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  byMonth.set(k, [...(byMonth.get(k) ?? []), n]);
+}
+---
+<Base title="Meeting Notes" current="notes">
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h1>Meeting Notes Archive</h1>
+          <p class="muted">{notes.length} {notes.length === 1 ? 'meeting' : 'meetings'} recorded. Open any note to read or print it.</p>
+        </div>
+        <a class="btn btn-outline no-print" href="/">‹ Back to hub</a>
+      </div>
+      <div class="grid cols-2" style="align-items:start">
+        <div>
+          {[...byMonth.entries()].map(([month, list]) => (
+            <div class="card" style="margin-bottom:1.1rem">
+              <h3>{month}</h3>
+              <ul class="plain">
+                {list.map((n) => (
+                  <li>
+                    <a href={`/notes/${n.id}`} class="row">
+                      <strong>{n.data.title}</strong>
+                      <span class="muted small">{fmt(n.data.date)}{n.data.location ? ` · ${n.data.location}` : ''}</span>
+                      {n.data.summary && <span class="small">{n.data.summary}</span>}
+                      <span class="small muted">{n.data.decisions.length} decision{n.data.decisions.length === 1 ? '' : 's'} · {n.data.actionItems.filter((a) => !a.done).length} open action item{n.data.actionItems.filter((a) => !a.done).length === 1 ? '' : 's'}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          {notes.length === 0 && <div class="card muted">No notes published yet.</div>}
+        </div>
+        <div class="card">
+          <h3>All open action items</h3>
+          <ActionItems notes={notes} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .row { display: flex; flex-direction: column; gap: .15rem; text-decoration: none; color: inherit; }
+  .row strong { color: var(--navy); }
+  .row:hover strong { text-decoration: underline; }
+</style>
