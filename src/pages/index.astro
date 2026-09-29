@@ -9,7 +9,7 @@ import { loadEvents } from '../lib/events';
 const events = await loadEvents();
 ---
 <Base current="home">
-  <NextMeeting events={events} />
+  <NextMeeting events={events.filter((e) => e.type === 'meeting')} />
   <Calendar events={events} />
   <Documents />
   <NotesPreview />

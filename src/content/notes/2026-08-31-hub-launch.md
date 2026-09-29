@@ -16,12 +16,12 @@ actionItems:
   - task: "Create the recurring Zoom meeting and paste the link into src/config.ts"
     owner: "Antonio McCarver"
     due: 2026-09-05
-    done: false
+    done: true
   - task: "Create the shared Google Drive folder and add its ID to src/config.ts"
     owner: "Antonio McCarver"
     due: 2026-09-05
-    done: false
-nextMeeting: "Kickoff — see calendar"
+    done: true
+nextMeeting: "To be scheduled — see calendar"
 draft: false
 ---
 

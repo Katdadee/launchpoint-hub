@@ -15,14 +15,14 @@ export const site = {
    * Tip: in Zoom, create a "Recurring meeting / No fixed time" so this link never changes.
    * Individual meetings in events.json can override it with their own "zoom" field.
    */
-  zoomUrl: '',
+  zoomUrl: 'https://us05web.zoom.us/j/81867993645?pwd=ZIF8bUEfSFaxa2MMfvexLqlHolYrbA.1',
 
   /**
    * Google Drive shared folder that holds the group's documents & collateral.
    * 1) Create a folder in Drive  2) Share → "Anyone with the link" → Viewer
    * 3) Copy the ID from the URL: drive.google.com/drive/folders/<THIS-PART>
    */
-  driveFolderId: '',
+  driveFolderId: '1vatjOEcRAiVD8ke6lZQiAh1saf5l8JJ3',
 
   // Who to contact when something on the hub is wrong or missing.
   hubOwner: { name: 'Antonio McCarver', role: 'Notes & Hub' },
@@ -34,8 +34,17 @@ export const site = {
 
 /** Group roster. Add everyone — a phone/email is optional but helps non-technical members. */
 export const team: { name: string; role: string; org?: string; email?: string; phone?: string }[] = [
-  { name: 'Antonio McCarver', role: 'Meeting notes · Hub admin', org: 'RDU Ventures' },
-  // { name: 'Jane Doe', role: 'Group lead', org: 'Organization', email: 'jane@example.com' },
+  { name: 'Suzanne Adkisson', role: 'Local resources team' },
+  { name: 'Chad Brooks', role: 'Local resources team' },
+  { name: 'Peyton Craft', role: 'National resources team' },
+  { name: 'Alexandra Guerra', role: 'State resources team' },
+  { name: 'Deleann Holt', role: 'State resources team' },
+  { name: 'Hana Hyams', role: 'Local resources team' },
+  { name: 'Antonio McCarver', role: 'National resources team · Meeting notes · Hub admin', org: 'RDU Ventures' },
+  { name: 'Blake Monroe', role: 'State resources team' },
+  { name: 'Ramanjit Sahi', role: 'State resources team' },
+  { name: 'Whitney Swallows', role: 'Local resources team' },
+  { name: 'Analosa Young', role: 'National resources team' },
 ];
 
 /**

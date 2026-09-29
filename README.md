@@ -72,10 +72,15 @@ npm run dev        # http://localhost:4321
 npm run build      # outputs to dist/
 ```
 
-## Deploy (Cloudflare Pages, free)
+## Deploy (Cloudflare Workers, free)
 
-1. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git** → pick `launchpoint-hub`.
-2. Framework preset **Astro**, build command `npm run build`, output directory `dist`.
-3. Save & Deploy. Share the `*.pages.dev` URL (or attach a custom domain) with the group.
+The site deploys as a Cloudflare Worker with static assets, the same way cciegrind.com does.
+`wrangler.jsonc` in the repo root holds the deploy settings.
+
+One-time connection in the Cloudflare dashboard:
+
+1. **Workers & Pages → Create → Import a repository** → pick `Katdadee/launchpoint-hub`.
+2. Build command `npm run build`, deploy command `npx wrangler deploy`.
+3. Save and deploy. Share the `launchpoint-hub.<account>.workers.dev` URL with the group.
 
 Every push to `main` redeploys automatically.

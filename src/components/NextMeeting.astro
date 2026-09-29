@@ -23,7 +23,7 @@ const zoomMissing = !site.zoomUrl;
         <h1 id="nm-title">{first ? first.title : 'No meetings scheduled yet'}</h1>
         <p class="when" id="nm-when">{first ? `${longDate(first.date)} · ${timeRange(first)}` : ''}</p>
         <p class="muted" id="nm-loc">{first?.location}</p>
-        <p class="muted small" id="nm-desc">{first?.description}</p>
+        <p class="muted small" id="nm-desc">{first ? first.description : 'Meeting dates are being finalized. They will appear here and on the calendar as soon as they are set.'}</p>
       </div>
       <div class="next-actions">
         <a id="nm-join" class="btn btn-primary btn-lg" href={first?.joinUrl || '#'} target="_blank" rel="noopener" aria-disabled={first?.joinUrl ? undefined : 'true'}>
@@ -31,7 +31,7 @@ const zoomMissing = !site.zoomUrl;
           Join Zoom Meeting
         </a>
         <div class="btn-row small-row">
-          <a id="nm-gcal" class="btn btn-outline" href={first ? googleCalLink(first) : '#'} target="_blank" rel="noopener">＋ Add to Google Calendar</a>
+          {first && <a id="nm-gcal" class="btn btn-outline" href={googleCalLink(first)} target="_blank" rel="noopener">＋ Add to Google Calendar</a>}
           <a class="btn btn-outline" href="/#calendar">See full schedule</a>
         </div>
         <p id="nm-hint" class="muted small hint">

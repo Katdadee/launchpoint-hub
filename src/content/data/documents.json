@@ -1,21 +1,57 @@
 [
   {
-    "id": "lc-project-brief",
-    "title": "LC Project Brief — Launch Point (pages 16–17)",
-    "description": "The original study-group assignment from the Leadership Clarksville program book.",
-    "category": "Program Materials",
-    "url": "https://drive.google.com/",
-    "type": "pdf",
-    "updated": "2026-08-31",
-    "featured": true
-  },
-  {
     "id": "shared-drive",
     "title": "Group Shared Drive (all files)",
     "description": "Everything we create lives here. Anyone with the link can view and download.",
-    "category": "Program Materials",
-    "url": "https://drive.google.com/",
+    "category": "Shared Drive",
+    "url": "https://drive.google.com/drive/folders/1vatjOEcRAiVD8ke6lZQiAh1saf5l8JJ3",
     "type": "folder",
     "featured": true
+  },
+  {
+    "id": "folder-research",
+    "title": "02 Research",
+    "description": "Where the local, state, and national research teams save what they find.",
+    "category": "Shared Drive",
+    "url": "https://drive.google.com/drive/folders/19lDPVwLBGDs92MDLHRgkgd8q3gETb4T0",
+    "type": "folder",
+    "featured": true
+  },
+  {
+    "id": "folder-program-materials",
+    "title": "01 Program Materials",
+    "description": "The Leadership Clarksville project brief and other program handouts.",
+    "category": "Shared Drive",
+    "url": "https://drive.google.com/drive/folders/1VH2kNfgJQa4873coCWSEzheQY3iIzxJ2",
+    "type": "folder",
+    "featured": true
+  },
+  {
+    "id": "folder-drafts",
+    "title": "03 Drafts",
+    "category": "Shared Drive",
+    "url": "https://drive.google.com/drive/folders/12htbHVpzxvFJ7FHJD8DbOd9Xc_sjTx9g",
+    "type": "folder"
+  },
+  {
+    "id": "folder-final-plan",
+    "title": "04 Final Plan",
+    "category": "Shared Drive",
+    "url": "https://drive.google.com/drive/folders/13F0sFTLPReYRPh3C8MDRYRdO_JyaIm28",
+    "type": "folder"
+  },
+  {
+    "id": "folder-presentation",
+    "title": "05 Presentation",
+    "category": "Shared Drive",
+    "url": "https://drive.google.com/drive/folders/1bzMkiTXP_kV3877g9DMsRVryc5GfTv3Z",
+    "type": "folder"
+  },
+  {
+    "id": "folder-meeting-notes",
+    "title": "Meeting Notes",
+    "category": "Shared Drive",
+    "url": "https://drive.google.com/drive/folders/1oarJxolG-OYNk0BGxdgFhfsiA-wUzkqX",
+    "type": "folder"
   }
 ]

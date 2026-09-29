@@ -1,0 +1,11 @@
+{
+	// Deploys the static Astro build as a Cloudflare Worker with static assets.
+	// Dashboard build command: npm run build — deploy command: npx wrangler deploy
+	"name": "launchpoint-hub",
+	"compatibility_date": "2026-09-29",
+	"workers_dev": true,
+	"assets": {
+		"directory": "./dist",
+		"not_found_handling": "404-page"
+	}
+}
