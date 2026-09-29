@@ -1,11 +1,83 @@
 [
   {
+    "id": "2026-10-08-agriculture-day",
+    "title": "Agriculture Day",
+    "date": "2026-10-08",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
+    "id": "2026-11-12-business-industry-day",
+    "title": "Business & Industry Day",
+    "date": "2026-11-12",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
+    "id": "2026-12-10-health-quality-of-life-day",
+    "title": "Health & Quality of Life Day",
+    "date": "2026-12-10",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
+    "id": "2027-01-14-government-day",
+    "title": "Government Day",
+    "date": "2027-01-14",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
+    "id": "2027-02-11-education-day",
+    "title": "Education Day",
+    "date": "2027-02-11",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
+    "id": "2027-03-11-arts-culture-day",
+    "title": "Arts, Culture, Entertainment, Media Day",
+    "date": "2027-03-11",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
+    "id": "2027-04-08-law-crime-justice-day",
+    "title": "Law, Crime, & Justice Day",
+    "date": "2027-04-08",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
     "id": "2027-05-13-presentation",
-    "title": "Final Presentation to Leadership Clarksville",
+    "title": "Group Presentation",
     "date": "2027-05-13",
     "location": "Location to be announced",
     "inPerson": true,
-    "description": "Present the Launch Point implementation plan. Time and location to be announced.",
+    "description": "Entire cohort meets. Our group presents the Launch Point implementation plan. In person, no Zoom.",
+    "type": "lc"
+  },
+  {
+    "id": "2027-05-18-graduation",
+    "title": "Graduation",
+    "date": "2027-05-18",
+    "location": "Location to be announced",
+    "inPerson": true,
+    "description": "Leadership Clarksville Class of 2027 graduation. In person, no Zoom.",
     "type": "lc"
   }
 ]
