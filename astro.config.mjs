@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // Update this once the site has its Cloudflare Pages URL or custom domain.
-  site: 'https://launchpoint-hub.pages.dev',
+  // Placeholder. Update this once the site has its Netlify URL or custom domain.
+  site: 'https://launchpoint-hub.netlify.app',
   trailingSlash: 'never',
 });

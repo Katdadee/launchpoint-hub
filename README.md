@@ -19,7 +19,7 @@ calendar, documents, meeting notes, action items, the project brief — is one s
 
 ## For the hub admin (Antonio)
 
-Everything is a small text file. Edit → commit → push → Cloudflare rebuilds in ~1 minute.
+Everything is a small text file. Edit → commit → push → Netlify rebuilds in ~1 minute.
 
 | To… | Edit… |
 | --- | --- |
@@ -72,15 +72,15 @@ npm run dev        # http://localhost:4321
 npm run build      # outputs to dist/
 ```
 
-## Deploy (Cloudflare Workers, free)
+## Deploy (Netlify, free)
 
-The site deploys as a Cloudflare Worker with static assets, the same way cciegrind.com does.
-`wrangler.jsonc` in the repo root holds the deploy settings.
+`netlify.toml` in the repo root holds the build settings, so Netlify fills them in automatically.
 
-One-time connection in the Cloudflare dashboard:
+One-time import in Netlify:
 
-1. **Workers & Pages → Create → Import a repository** → pick `Katdadee/launchpoint-hub`.
-2. Build command `npm run build`, deploy command `npx wrangler deploy`.
-3. Save and deploy. Share the `launchpoint-hub.<account>.workers.dev` URL with the group.
+1. **Add new site → Import an existing project → GitHub** → pick `Katdadee/launchpoint-hub`.
+2. Leave the build settings as detected (build command `npm run build`, publish directory `dist`).
+3. Deploy. Share the `*.netlify.app` URL with the group, or attach a custom domain under
+   **Domain management**.
 
 Every push to `main` redeploys automatically.
