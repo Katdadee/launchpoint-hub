@@ -107,17 +107,17 @@ const upcoming = events.slice(0, 8);
   }
   function show(id: string) {
     const e = events.find((x) => x.id === id); if (!e) return;
-    const join = e.inPerson
-      ? `<p class="muted"><strong>In person:</strong> ${esc(e.location)}</p>`
-      : e.joinUrl
-        ? `<a class="btn btn-primary" href="${e.joinUrl}" target="_blank" rel="noopener">Join Zoom Meeting</a>`
-        : `<p class="muted small">Zoom link not set yet.</p>`;
+    const where = e.inPerson ? `<p class="muted"><strong>In person:</strong> ${esc(e.location)}</p>` : '';
+    const join = e.joinUrl
+      ? `<a class="btn btn-primary" href="${e.joinUrl}" target="_blank" rel="noopener">${e.inPerson ? 'Can\'t make it? Join on Zoom' : 'Join Zoom Meeting'}</a>`
+      : `<p class="muted small">Zoom link not set yet.</p>`;
     detail.innerHTML = `
       <button class="back" id="cal-back">‹ Back to upcoming</button>
       <span class="pill pill-navy">${labelFor(e.type)}</span>
       <h3>${esc(e.title)}</h3>
       <p><strong>${e.long}</strong><br>${e.when}</p>
       ${e.location && !e.inPerson ? `<p class="muted">${esc(e.location)}</p>` : ''}
+      ${where}
       ${e.description ? `<p class="small">${esc(e.description)}</p>` : ''}
       <div class="btn-row">${join}<a class="btn btn-outline" href="${e.gcal}" target="_blank" rel="noopener">＋ Google Calendar</a></div>`;
     document.getElementById('cal-back')!.addEventListener('click', () => { detail.innerHTML = upcomingHTML; });

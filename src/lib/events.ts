@@ -32,7 +32,7 @@ export async function loadEvents(): Promise<HubEvent[]> {
         inPerson: e.inPerson,
         description: e.description,
         type: e.type,
-        joinUrl: e.zoom ?? (e.inPerson ? '' : site.zoomUrl),
+        joinUrl: e.zoom ?? site.zoomUrl, // remote option is always offered, even for in-person meetings
         startISO: `${e.date}T${start}:00`,
         endISO: `${e.date}T${end}:00`,
       } satisfies HubEvent;

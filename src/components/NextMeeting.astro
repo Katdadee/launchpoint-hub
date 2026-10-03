@@ -61,7 +61,7 @@ const zoomMissing = !site.zoomUrl;
     const url = next.joinUrl || groupZoom;
     if (url) { join.href = url; join.removeAttribute('aria-disabled'); }
     else { join.href = '#'; join.setAttribute('aria-disabled', 'true'); }
-    if (next.inPerson) { $('nm-hint').textContent = `Next session is in person at ${next.location}. The button opens the group's Zoom room.`; }
+    if (next.inPerson) { $('nm-hint').textContent = `Next session is in person at ${next.location}. Please attend in person if you can; Zoom is the backup.`; }
     ($('nm-gcal') as HTMLAnchorElement).href = next.gcal;
     // Live status: today / happening now
     const today = new Date().toISOString().slice(0, 10);
