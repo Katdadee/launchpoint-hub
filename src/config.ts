@@ -15,7 +15,7 @@ export const site = {
    * Tip: in Zoom, create a "Recurring meeting / No fixed time" so this link never changes.
    * Individual meetings in events.json can override it with their own "zoom" field.
    */
-  zoomUrl: 'https://us05web.zoom.us/j/81867993645?pwd=ZIF8bUEfSFaxa2MMfvexLqlHolYrbA.1',
+  zoomUrl: 'https://us06web.zoom.us/j/85843342809?pwd=XGxMxlgwd82PsZR1o7cxSIlyS58bhJ.1',
 
   /**
    * Google Drive shared folder that holds the group's documents & collateral.
