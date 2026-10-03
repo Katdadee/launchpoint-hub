@@ -26,7 +26,7 @@ const zoomMissing = !site.zoomUrl;
         <p class="muted small" id="nm-desc">{first ? first.description : 'Meeting dates are being finalized. They will appear here and on the calendar as soon as they are set.'}</p>
       </div>
       <div class="next-actions">
-        <a id="nm-join" class="btn btn-primary btn-lg" href={first?.joinUrl || '#'} target="_blank" rel="noopener" aria-disabled={first?.joinUrl ? undefined : 'true'}>
+        <a id="nm-join" class="btn btn-primary btn-lg" href={first?.joinUrl || site.zoomUrl || '#'} data-group={site.zoomUrl} target="_blank" rel="noopener" aria-disabled={first?.joinUrl || site.zoomUrl ? undefined : 'true'}>
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg>
           Join Zoom Meeting
         </a>
@@ -50,15 +50,18 @@ const zoomMissing = !site.zoomUrl;
   const now = new Date();
   const next = data.find((e: any) => new Date(e.endISO) >= now) ?? null;
   const $ = (id: string) => document.getElementById(id)!;
+  const join = $('nm-join') as HTMLAnchorElement;
+  const groupZoom = join.dataset.group || '';
   if (next) {
     $('nm-title').textContent = next.title;
     $('nm-when').textContent = next.when;
     $('nm-loc').textContent = next.location;
     $('nm-desc').textContent = next.description;
-    const join = $('nm-join') as HTMLAnchorElement;
-    if (next.joinUrl) { join.href = next.joinUrl; join.removeAttribute('aria-disabled'); }
+    // Fall back to the group's standing Zoom room so the button always works.
+    const url = next.joinUrl || groupZoom;
+    if (url) { join.href = url; join.removeAttribute('aria-disabled'); }
     else { join.href = '#'; join.setAttribute('aria-disabled', 'true'); }
-    if (next.inPerson) { join.textContent = 'In-person meeting'; join.setAttribute('aria-disabled', 'true'); $('nm-hint').textContent = `Meet at: ${next.location}`; }
+    if (next.inPerson) { $('nm-hint').textContent = `Next session is in person at ${next.location}. The button opens the group's Zoom room.`; }
     ($('nm-gcal') as HTMLAnchorElement).href = next.gcal;
     // Live status: today / happening now
     const today = new Date().toISOString().slice(0, 10);
@@ -70,7 +73,7 @@ const zoomMissing = !site.zoomUrl;
   } else if (data.length) {
     $('nm-title').textContent = 'No upcoming meetings on the calendar';
     $('nm-when').textContent = ''; $('nm-loc').textContent = ''; $('nm-desc').textContent = 'Check back soon — the schedule will be updated here.';
-    $('nm-join').setAttribute('aria-disabled', 'true');
+    if (!groupZoom) join.setAttribute('aria-disabled', 'true');
   }
 </script>
 
