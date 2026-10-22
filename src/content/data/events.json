@@ -9,6 +9,15 @@
     "type": "lc"
   },
   {
+    "id": "2026-10-24-study-group",
+    "title": "Study Group Meeting 1 of 9",
+    "date": "2026-10-24",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
+  },
+  {
     "id": "2026-11-12-business-industry-day",
     "title": "Business & Industry Day",
     "date": "2026-11-12",
@@ -16,6 +25,24 @@
     "inPerson": true,
     "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
     "type": "lc"
+  },
+  {
+    "id": "2026-11-14-study-group",
+    "title": "Study Group Meeting 2 of 9",
+    "date": "2026-11-14",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
+  },
+  {
+    "id": "2026-12-05-study-group",
+    "title": "Study Group Meeting 3 of 9",
+    "date": "2026-12-05",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
   },
   {
     "id": "2026-12-10-health-quality-of-life-day",
@@ -27,6 +54,15 @@
     "type": "lc"
   },
   {
+    "id": "2027-01-09-study-group",
+    "title": "Study Group Meeting 4 of 9",
+    "date": "2027-01-09",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
+  },
+  {
     "id": "2027-01-14-government-day",
     "title": "Government Day",
     "date": "2027-01-14",
@@ -34,6 +70,15 @@
     "inPerson": true,
     "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
     "type": "lc"
+  },
+  {
+    "id": "2027-01-30-study-group",
+    "title": "Study Group Meeting 5 of 9",
+    "date": "2027-01-30",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
   },
   {
     "id": "2027-02-11-education-day",
@@ -45,6 +90,24 @@
     "type": "lc"
   },
   {
+    "id": "2027-02-20-study-group",
+    "title": "Study Group Meeting 6 of 9",
+    "date": "2027-02-20",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
+  },
+  {
+    "id": "2027-03-06-study-group",
+    "title": "Study Group Meeting 7 of 9",
+    "date": "2027-03-06",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
+  },
+  {
     "id": "2027-03-11-arts-culture-day",
     "title": "Arts, Culture, Entertainment, Media Day",
     "date": "2027-03-11",
@@ -54,6 +117,15 @@
     "type": "lc"
   },
   {
+    "id": "2027-03-27-study-group",
+    "title": "Study Group Meeting 8 of 9",
+    "date": "2027-03-27",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
+  },
+  {
     "id": "2027-04-08-law-crime-justice-day",
     "title": "Law, Crime, & Justice Day",
     "date": "2027-04-08",
@@ -61,6 +133,15 @@
     "inPerson": true,
     "description": "Leadership Clarksville program day for the entire cohort. In person, no Zoom.",
     "type": "lc"
+  },
+  {
+    "id": "2027-04-17-study-group",
+    "title": "Study Group Meeting 9 of 9",
+    "date": "2027-04-17",
+    "location": "Zoom",
+    "inPerson": false,
+    "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
+    "type": "meeting"
   },
   {
     "id": "2027-05-13-presentation",
