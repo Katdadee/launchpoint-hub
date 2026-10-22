@@ -15,7 +15,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2026-11-12-business-industry-day",
@@ -33,7 +35,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2026-12-05-study-group",
@@ -42,7 +46,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2026-12-10-health-quality-of-life-day",
@@ -60,7 +66,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2027-01-14-government-day",
@@ -78,7 +86,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2027-02-11-education-day",
@@ -96,7 +106,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2027-03-06-study-group",
@@ -105,7 +117,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2027-03-11-arts-culture-day",
@@ -123,7 +137,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2027-04-08-law-crime-justice-day",
@@ -141,7 +157,9 @@
     "location": "Zoom",
     "inPerson": false,
     "description": "Launch Point study-group working session on Zoom. Use the Join button above; no Zoom account needed.",
-    "type": "meeting"
+    "type": "meeting",
+    "start": "09:00",
+    "end": "10:30"
   },
   {
     "id": "2027-05-13-presentation",
